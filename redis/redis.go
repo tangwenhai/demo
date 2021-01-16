@@ -1,8 +1,9 @@
 package redis
 
 import (
-	"github.com/go-redis/redis"
 	"time"
+
+	"github.com/go-redis/redis"
 )
 
 var Redis *redis.Client
@@ -17,7 +18,7 @@ func Init() {
 }
 
 func Set(key string, value interface{}, expireSecond int) error {
-	_, err := Redis.Set(key, value, time.Duration(expireSecond) * time.Second).Result()
+	_, err := Redis.Set(key, value, time.Duration(expireSecond)*time.Second).Result()
 	return err
 }
 
@@ -28,5 +29,3 @@ func Get(key string) (string, error) {
 func MGet(keys ...string) ([]interface{}, error) {
 	return Redis.MGet(keys...).Result()
 }
-
-
